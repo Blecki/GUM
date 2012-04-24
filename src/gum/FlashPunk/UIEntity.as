@@ -35,7 +35,7 @@ package gum.FlashPunk
 			else this.skin = skin;
 			gui.skin = this.skin;
 			
-			super();
+			super(_x, _y);
 		}
 		
 		public function AddGuiItem(item:UIItem):void
@@ -75,7 +75,7 @@ package gum.FlashPunk
 		
 		override public function render():void 
 		{
-			gui.Render(null, 0, 0);
+			gui.Render(null, gui.rect.x, gui.rect.y);
 			super.render();
 		}
 		

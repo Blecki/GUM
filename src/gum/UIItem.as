@@ -10,6 +10,12 @@ package gum
 	 */
 	public dynamic class UIItem
 	{
+		protected static var _tPoint1:Point = new Point();
+		protected static var _tPoint2:Point = new Point();
+		protected static function mtPoint1(x:Number, y:Number):Point { _tPoint1.x = x; _tPoint1.y = y; return _tPoint1; }
+		protected static function mtPoint2(x:Number, y:Number):Point { _tPoint2.x = x; _tPoint2.y = y; return _tPoint2; }
+		protected static var _pZero:Point = new Point(0, 0);
+		
 		public static const HORIZONTAL:int = 0;
 		public static const VERTICAL:int = 1;
 		
