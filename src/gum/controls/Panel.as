@@ -1,7 +1,6 @@
 package gum.controls
 {
 	import flash.display.BitmapData;
-	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import gum.*;
 	
@@ -38,13 +37,13 @@ package gum.controls
 		
 		override public function Render(parentBuffer:BitmapData, xOffset:int, yOffset:int):void 
 		{
-			skin.DrawElementBackground(buffer, new Rectangle(0, 0, buffer.width, buffer.height), 0, 0);
+			skin.DrawElementBackground(buffer, mtRect(0, 0, buffer.width, buffer.height), 0, 0);
 			
 			for (var i:int = 0; i < children.length; ++i)
 				children[i].Render(buffer, 0, 0);
 				
 			if (parentBuffer != null)
-				parentBuffer.copyPixels(buffer, new Rectangle(0, 0, buffer.width, buffer.height), new Point(rect.x, rect.y));
+				parentBuffer.copyPixels(buffer, mtRect(0, 0, buffer.width, buffer.height), mtPoint1(rect.x, rect.y));
 				
 			
 		}

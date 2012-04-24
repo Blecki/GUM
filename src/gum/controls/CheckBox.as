@@ -1,10 +1,7 @@
 package gum.controls
 {
 	import flash.display.BitmapData;
-	import flash.geom.Matrix;
-	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	import flash.text.TextField;
 	import gum.*;
 	/**
 	 * ...
@@ -26,7 +23,7 @@ package gum.controls
 		
 		override public function Update(input:UIInput):void 
 		{
-			hover = rect.containsPoint(new Point(input.mouseX, input.mouseY));
+			hover = rect.containsPoint(mtPoint1(input.mouseX, input.mouseY));
 			if (hover) input.cursor = "button";
 			if (hover && input.mousePressed) 
 			{

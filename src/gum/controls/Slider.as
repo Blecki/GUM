@@ -4,10 +4,6 @@ package gum.controls
 	import flash.geom.Rectangle;
 	import gum.*;
 	
-	/**
-	 * ...
-	 * @author AJC
-	 */
 	public dynamic class Slider extends UIItem
 	{
 		
@@ -23,7 +19,6 @@ package gum.controls
 		public function Slider(rect:Rectangle, properties:Object) 
 		{
 			super(rect, properties);
-			
 			position = minimum;
 		}
 		

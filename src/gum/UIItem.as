@@ -4,17 +4,27 @@ package gum
 	import flash.display.Stage;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	/**
-	 * ...
-	 * @author AJC
-	 */
+
 	public dynamic class UIItem
 	{
+		
+		//Temporary recycleable point objects.
 		protected static var _tPoint1:Point = new Point();
 		protected static var _tPoint2:Point = new Point();
-		protected static function mtPoint1(x:Number, y:Number):Point { _tPoint1.x = x; _tPoint1.y = y; return _tPoint1; }
-		protected static function mtPoint2(x:Number, y:Number):Point { _tPoint2.x = x; _tPoint2.y = y; return _tPoint2; }
+		public static function mtPoint1(x:Number, y:Number):Point { _tPoint1.x = x; _tPoint1.y = y; return _tPoint1; }
+		public static function mtPoint2(x:Number, y:Number):Point { _tPoint2.x = x; _tPoint2.y = y; return _tPoint2; }
 		protected static var _pZero:Point = new Point(0, 0);
+		
+		//Temporary recycleable rect object
+		protected static var _tRect:Rectangle = new Rectangle();
+		public static function mtRect(x:Number, y:Number, w:Number, h:Number):Rectangle 
+		{ 
+			_tRect.x = x;
+			_tRect.y = y;
+			_tRect.width = w;
+			_tRect.height = h;
+			return _tRect;
+		}
 		
 		public static const HORIZONTAL:int = 0;
 		public static const VERTICAL:int = 1;

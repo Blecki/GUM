@@ -4,6 +4,7 @@ package gum.FlashPunk
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import net.flashpunk.*;
+	import gum.*;
 
 	/**
 	 * Performance-optimized non-animated image.
@@ -26,7 +27,7 @@ package gum.FlashPunk
 			_point.y = point.y + y - originY - camera.y * scrollY;
 			
 			// render without transformation
-			target.copyPixels(_source, new Rectangle(0,0,_source.width, _source.height), _point, null, null, false);
+			target.copyPixels(_source, UIItem.mtRect(0,0,_source.width, _source.height), _point, null, null, false);
 		}
 		
 		/**

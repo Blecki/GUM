@@ -37,17 +37,26 @@ package gum
 			buffer.fillRect(rect, color);
 		}
 		
+		protected static var _bRect:Rectangle = new Rectangle();
+		private static function mbRect(x:Number, y:Number, w:Number, h:Number):Rectangle 
+		{ 
+			_bRect.x = x;
+			_bRect.y = y;
+			_bRect.width = w;
+			_bRect.height = h;
+			return _bRect;
+		}
 		public function DrawBorder(buffer:BitmapData, rect:Rectangle, xOffset:int, yOffset:int, color:uint):void 
 		{
-			buffer.fillRect(new Rectangle(rect.x + xOffset, rect.y + yOffset, rect.width, 1), color);
-			buffer.fillRect(new Rectangle(rect.x + xOffset, rect.bottom - 1 + yOffset, rect.width, 1), color);
-			buffer.fillRect(new Rectangle(rect.x + xOffset, rect.y + 1 + yOffset, 1, rect.height - 2), color);
-			buffer.fillRect(new Rectangle(rect.right - 1 + xOffset, rect.y + 1 + yOffset, 1, rect.height - 2), color);
+			buffer.fillRect(mbRect(rect.x + xOffset, rect.y + yOffset, rect.width, 1), color);
+			buffer.fillRect(mbRect(rect.x + xOffset, rect.bottom - 1 + yOffset, rect.width, 1), color);
+			buffer.fillRect(mbRect(rect.x + xOffset, rect.y + 1 + yOffset, 1, rect.height - 2), color);
+			buffer.fillRect(mbRect(rect.right - 1 + xOffset, rect.y + 1 + yOffset, 1, rect.height - 2), color);
 		}
 		
 		public function DrawElementBackground(buffer:BitmapData, rect:Rectangle, xOffset:int, yOffset:int):void
 		{
-			buffer.fillRect(new Rectangle(rect.x + xOffset, rect.y + yOffset, rect.width, rect.height), backgroundColor);
+			buffer.fillRect(UIItem.mtRect(rect.x + xOffset, rect.y + yOffset, rect.width, rect.height), backgroundColor);
 		}
 		
 		private function StyleButton(item:UIItem, label:String):void
@@ -73,7 +82,7 @@ package gum
 		{
 			if (button.border == null || button.border == true)
 			{
-				var nRect:Rectangle = new Rectangle(button.rect.x + xOffset, button.rect.y + yOffset, button.rect.width, button.rect.height);
+				var nRect:Rectangle = UIItem.mtRect(button.rect.x + xOffset, button.rect.y + yOffset, button.rect.width, button.rect.height);
 				buffer.fillRect(nRect, button.hover ? hoverBackgroundColor : backgroundColor);
 				DrawBorder(buffer, nRect, 0, 0, borderColor );
 			}
@@ -130,13 +139,13 @@ package gum
 			
 			if (slider.orientation == UIItem.HORIZONTAL)
 			{
-				buffer.fillRect(new Rectangle(
+				buffer.fillRect(UIItem.mtRect(
 					slider.rect.x + xOffset + slider.handlePosition() - (sliderHandleSize / 2),
 					slider.rect.y + yOffset, sliderHandleSize, slider.rect.height), borderColor);
 			}
 			else
 			{
-				buffer.fillRect(new Rectangle(
+				buffer.fillRect(UIItem.mtRect(
 					slider.rect.x + xOffset, 
 					slider.rect.y + yOffset + slider.handlePosition() - (sliderHandleSize / 2), 
 					slider.rect.width, sliderHandleSize), borderColor);
@@ -148,16 +157,16 @@ package gum
 		{
 			DrawElementBackground(buffer, bar.rect, xOffset, yOffset);
 			DrawBorder(buffer, bar.rect, xOffset, yOffset, borderColor);
-			buffer.fillRect(new Rectangle(bar.rect.x + xOffset, bar.rect.y + yOffset, bar.rect.width * bar.percentage, bar.rect.height),
+			buffer.fillRect(UIItem.mtRect(bar.rect.x + xOffset, bar.rect.y + yOffset, bar.rect.width * bar.percentage, bar.rect.height),
 				borderColor);
 		}
 		
 		public function DrawCheckBox(buffer:BitmapData, xOffset:int, yOffset:int, box:CheckBox):void
 		{
-			var nRect:Rectangle = new Rectangle(box.rect.x + xOffset, box.rect.y + yOffset, box.rect.height, box.rect.height);
+			var nRect:Rectangle = UIItem.mtRect(box.rect.x + xOffset, box.rect.y + yOffset, box.rect.height, box.rect.height);
 			buffer.fillRect(nRect, box.hover ? hoverBackgroundColor : backgroundColor);
-			if (box.checked) buffer.fillRect(new Rectangle(nRect.x + 6, nRect.y + 6, nRect.width - 12, nRect.height - 12), checkMarkColor);
 			DrawBorder(buffer, nRect, 0, 0, borderColor );
+			if (box.checked) buffer.fillRect(UIItem.mtRect(nRect.x + 6, nRect.y + 6, nRect.width - 12, nRect.height - 12), checkMarkColor);
 			
 			if (box.label != null) StyleButton(box, box.label);
 			
